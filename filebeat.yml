@@ -1,0 +1,42 @@
+# Base configuration for Filebeat
+
+filebeat.inputs:
+- type: log
+  enabled: false
+  paths:
+    - /var/log/*.log
+
+filebeat.config.modules:
+  path: ${path.config}/modules.d/*.yml
+  reload.enabled: false
+
+setup.template.settings:
+  index.number_of_shards: 1
+
+# Set the Elasticsearch output
+# output.elasticsearch:
+#   hosts: ["localhost:9200"]
+
+# Set the Logstash output
+output.logstash:
+  hosts: ["localhost:5044"]
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
+
+setup.kibana:
+
+monitoring:
+  enabled: false
+
+#logging:
+#  level: debug  # Set the logging level to debug
+#  to_files: true
+#  files:
+#    path: /var/log/filebeat  # Specify the directory where logs should be saved
+#    name: filebeat  # Specify the log file name prefix
+#    keepfiles: 7  # Specify the number of log files to keep
+#    permissions: 0644  # Specify the file permissions
+#    rotateeverybytes: 10485760  # Rotate log files after they reach this size (10 MB)

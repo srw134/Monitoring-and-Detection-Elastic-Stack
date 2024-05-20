@@ -1,0 +1,88 @@
+- module: zeek
+  connection:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/conn*.log"]
+  dce_rpc:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/dce_rpc*.log"]
+  dhcp:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/dhcp*.log"]
+  dnp3:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/dnp3*.log"]
+  dns:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/dns*.log"]
+  http:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/http*.log"]
+  files:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/files*.log"]
+  ftp:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/ftp*.log"]
+  irc:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/irc*.log"]
+  kerberos:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/kerberos*.log"]
+  modbus:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/modbus*.log"]
+  mysql:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/mysql*.log"]
+  notice:
+    enabled: false
+    var.paths: ["/opt/zeek/logs/current/notice*.log"]
+  pe:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/pe*.log"]
+  radius:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/radius*.log"]
+  rdp:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/rdp*.log"]
+  signatures:
+    enabled: false
+    var.paths: ["/opt/zeek/logs/current/signatures*.log"]
+  sip:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/sip*.log"]
+  smb_cmd:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/smb_cmd*.log"]
+  smtp:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/smtp*.log"]
+  snmp:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/snmp*.log"]
+  socks:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/socks*.log"]
+  ssh:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/ssh*.log"]
+  ssl:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/ssl*.log"]
+  syslog:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/syslog*.log"]
+  traceroute:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/traceroute*.log"]
+  tunnel:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/tunnel*.log"]
+  weird:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/weird*.log"]
+  x509:
+    enabled: true
+    var.paths: ["/opt/zeek/logs/current/x509*.log"]
