@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Path to the JSON file
+FILE_PATH="./zeek_indices_export.json"
+
+# Get the current timestamp
+CURRENT_TIMESTAMP=$(date +%s)
+
+# Calculate the timestamp for 2 hours ago
+TWO_HOURS_AGO=$(($CURRENT_TIMESTAMP - 2 * 3600))
+
+# Read the file line by line and modify the timestamps
+while IFS= read -r line; do
+    # Extract the current timestamp in the line
+    CURRENT_LINE_TIMESTAMP=$(echo $line | grep -oP '"@timestamp":"\K[^"]+')
+
+    if [ -n "$CURRENT_LINE_TIMESTAMP" ]; then
+        # Convert the current line timestamp to seconds since epoch
+        CURRENT_LINE_TIMESTAMP_SEC=$(date -d "$CURRENT_LINE_TIMESTAMP" +%s)
+
+        # Calculate the new timestamp relative to the current time
+        TIME_DELTA=$(($CURRENT_TIMESTAMP - $CURRENT_LINE_TIMESTAMP_SEC))
+        NEW_TIMESTAMP_SEC=$(($TWO_HOURS_AGO - $TIME_DELTA))
+
+        # Convert the new timestamp back to the required format
+        NEW_TIMESTAMP=$(date -u -d "@$NEW_TIMESTAMP_SEC" +"%Y-%m-%dT%H:%M:%S.%3NZ")
+
+        # Replace the old timestamp with the new one
+        line=$(echo $line | sed "s/$CURRENT_LINE_TIMESTAMP/$NEW_TIMESTAMP/")
+    fi
+
+    # Print the modified line
+    echo $line
+done < "$FILE_PATH" > "${FILE_PATH}.modified"
+
+# Replace the original file with the modified file
+mv "${FILE_PATH}.modified" "$FILE_PATH"
+
+echo "Timestamps have been updated in the file."
