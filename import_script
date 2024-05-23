@@ -4,7 +4,7 @@
 ELASTICSEARCH_HOST="127.0.0.1:9200"
 INDEX_PATTERN="zeek*"
 MAPPINGS_FILE="zeek_indices_mappings.json"
-INPUT_FILE="zeek_indices_export.json"
+INPUT_FILE="zeek_indices_export_modify.json"
 BULK_SIZE=1000  # Number of documents per bulk request
 MAX_BULK_SIZE=5242880  # Maximum bulk size in bytes (5MB)
 TEMP_BULK_FILE=$(mktemp)  # Temporary file for bulk data
